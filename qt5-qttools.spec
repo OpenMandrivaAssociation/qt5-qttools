@@ -23,7 +23,7 @@
 
 Name:		qt5-qttools
 Version:	%{qtversion}
-Release:	1
+Release:	2
 Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
@@ -33,6 +33,7 @@ Source1:	openmandriva-assistant-qt5.desktop
 Source2:	openmandriva-designer-qt5.desktop
 Source3:	openmandriva-linguist-qt5.desktop
 Source100:	qt5-qttools.rpmlintrc
+Patch0:		qttools-opensource-src-5.2.0-qmake-qt5.patch
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
