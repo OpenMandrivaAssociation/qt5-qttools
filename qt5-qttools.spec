@@ -32,6 +32,7 @@ Source0:	http://download.qt-project.org/official_releases/qt/%{api}.%{qtminor}/%
 Source1:	openmandriva-assistant-qt5.desktop
 Source2:	openmandriva-designer-qt5.desktop
 Source3:	openmandriva-linguist-qt5.desktop
+Source100:	qt5-qttools.rpmlintrc
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
