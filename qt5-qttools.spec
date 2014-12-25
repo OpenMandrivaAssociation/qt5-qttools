@@ -57,16 +57,15 @@ Qt GUI tools
 
 #------------------------------------------------------------------------------
 
-%package assistant
-Summary: Qt%{api} Assistant Doc Utility
-Group:   Documentation
-Requires: qtbase5-database-plugin-sqlite
-Requires: qttranslations5
+%package	assistant
+Summary:	Qt%{api} Assistant Doc Utility
+Group:		Documentation
+Requires:	qt5-qtbase-database-plugin-sqlite
 
-%description assistant
+%description	assistant
 Qt Assistant provides a documentation Browser.
 
-%files assistant
+%files		assistant
 %{_qt5_bindir}/assistant*
 %{_qt5_bindir}/qcollectiongen*
 %{_qt5_bindir}/qhelpconv*
@@ -77,42 +76,41 @@ Qt Assistant provides a documentation Browser.
 
 #------------------------------------------------------------------------------
 
-%package designer
-Summary: %{name} Visual Design Tool
-Group: Development/KDE and Qt
-Requires:   qttranslations5
+%package	designer
+Summary:	%{name} Visual Design Tool
+Group:		Development/KDE and Qt
 
-%description designer
+%description	designer
 The Qt Designer is a visual design tool that makes designing and
 implementing user interfaces a lot easier.
 
-%files designer
+%files		designer
 %{_qt5_bindir}/design*
 %{_qt5_plugindir}/designer
 %{_datadir}/applications/*designer*.desktop
 
 #------------------------------------------------------------------------------
 
-%package qtdbus
-Summary:  Qt%{api} Dbus Binary
-Group: Development/KDE and Qt
+%package	qtdbus
+Summary:	Qt%{api} Dbus Binary
+Group:		Development/KDE and Qt
 
-%description qtdbus
+%description	qtdbus
 Qt%{api} Dbus Binary.
 
 The QtDBus module is a Unix-only library that you can use to perform 
 Inter-Process Communication using the D-Bus protocol.
 
-%files qtdbus
+%files	qtdbus
 %{_qt5_bindir}/qdbus
 %{_qt5_bindir}/qdbusviewer
 
 #------------------------------------------------------------------------------
 
 %package -n %{qthelp}
-Summary: Qt%{api} Component Library
-Group: System/Libraries
-Provides: qthelplib = %{version}
+Summary:	Qt%{api} Component Library
+Group:		System/Libraries
+Provides:	qthelplib = %{version}
 
 %description -n %{qthelp}
 Qt%{api} Component Library.
@@ -125,12 +123,12 @@ in applications.
 
 #------------------------------------------------------------------------------
 
-%package -n %{qthelpd}
-Summary: Devel files needed to build apps based on QtJsonDbCompat
-Group:    Development/KDE and Qt
-Requires: %{qthelp} = %version
-Requires: %{name} = %version
-Requires: qt5-qtbase-devel = %version
+%package -n	%{qthelpd}
+Summary:	Devel files needed to build apps based on QtJsonDbCompat
+Group:		Development/KDE and Qt
+Requires:	%{qthelp} = %version
+Requires:	%{name} = %version
+Requires:	qt5-qtbase-devel = %version
 
 %description -n %{qthelpd}
 Devel files needed to build apps based on QtJsonDbCompat.
@@ -154,15 +152,15 @@ Devel files needed to build apps based on QtJsonDbCompat.
 
 #------------------------------------------------------------------------------
 
-%package -n %{qtclucene}
-Summary: Qt%{api} Component Library
-Group: System/Libraries
-Provides: qtclucenelib = %{version}
+%package -n	%{qtclucene}
+Summary:	Qt%{api} Component Library
+Group:		System/Libraries
+Provides:	qtclucenelib = %{version}
 
 %description -n %{qtclucene}
 Qt%{api} Component Library.
 
-%files -n %{qtclucene}
+%files -n	%{qtclucene}
 %{_qt5_libdir}/libQt%{api}CLucene.so.%{major}*
 %if "%{_qt5_libdir}" != "%{_libdir}"
 %{_libdir}/libQt%{api}CLucene.so.%{major}*
@@ -170,10 +168,10 @@ Qt%{api} Component Library.
 
 #------------------------------------------------------------------------------
 
-%package -n %{qtclucened}
-Summary: Devel files needed to build apps based on QtCLucene
-Group:    Development/KDE and Qt
-Requires: %{qtclucene} = %version
+%package -n	%{qtclucened}
+Summary:	Devel files needed to build apps based on QtCLucene
+Group:		Development/KDE and Qt
+Requires:	%{qtclucene} = %version
 
 %description -n %{qtclucened}
 Devel files needed to build apps based on QtCLucene.
@@ -207,7 +205,7 @@ access Qt Designer's components.
 
 #------------------------------------------------------------------------------
 
-%package -n %{qtdesignercomponents}
+%package -n	%{qtdesignercomponents}
 Summary:	Components for Qt Designer
 Group:		System/Libraries
 
@@ -239,15 +237,15 @@ Development files for Qt Designer Components.
 %{_libdir}/pkgconfig/Qt%{api}DesignerComponents.pc
 %endif
 
-%package -n %{qtdesignerd}
-Summary: Devel files needed to build apps based on QtDesigner
-Group:    Development/KDE and Qt
-Requires: %{qtdesigner} = %version
+%package -n	%{qtdesignerd}
+Summary:	Devel files needed to build apps based on QtDesigner
+Group:		Development/KDE and Qt
+Requires:	%{qtdesigner} = %version
 
 %description -n %{qtdesignerd}
 Devel files needed to build apps based on QtDesigner.
 
-%files -n %{qtdesignerd}
+%files -n	%{qtdesignerd}
 %{_qt5_includedir}/QtDesigner
 %{_qt5_libdir}/libQt%{api}Designer.so
 %{_qt5_libdir}/libQt%{api}Designer.prl
