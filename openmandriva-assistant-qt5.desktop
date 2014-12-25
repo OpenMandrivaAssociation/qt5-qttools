@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Qt5 Assistant
+Comment=A manual browser for Qt5 documentation
+TryExec=/usr/lib/qt5/bin/assistant
+Exec=/usr/lib/qt5/bin/assistant
+Icon=documentation_section
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=KDE;Qt;Documentation;

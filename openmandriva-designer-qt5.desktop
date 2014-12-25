@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Qt5 Designer
+Comment=A graphical designer/dialog builder for Qt5
+TryExec=/usr/lib/qt5/bin/designer
+Exec=/usr/lib/qt5/bin/designer
+Icon=development_environment_section
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=KDE;Qt;GUIDesigner;

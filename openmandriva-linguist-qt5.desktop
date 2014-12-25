@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Qt5 Linguist
+Comment=A translation tool for Qt5
+TryExec=/usr/lib/qt5/bin/linguist
+Exec=/usr/lib/qt5/bin/linguist
+Icon=development_environment_section
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=application/x-linguist;
+Categories=KDE;Qt;GUIDesigner;
