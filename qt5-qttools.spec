@@ -23,7 +23,7 @@
 
 Name:		qt5-qttools
 Version:	%{qtversion}
-Release:	2
+Release:	3
 Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
@@ -44,28 +44,21 @@ BuildRequires:	pkgconfig(Qt5DBus)
 Qt GUI tools
 
 %files
-%{_qt5_bindir}/lconvert
-%{_qt5_bindir}/lrelease
-%{_qt5_bindir}/lupdate
 %{_qt5_bindir}/pixeltool
 %{_qt5_bindir}/qtpaths
 %{_qt5_bindir}/qtdiag
-%{_qt5_datadir}/phrasebooks
-#FIXME: in the good package ?
-%{_qt5_exampledir}/linguist
 
 #------------------------------------------------------------------------------
 
-%package	assistant
+%package -n	qt%{api}-assistant
 Summary:	Qt%{api} Assistant Doc Utility
 Group:		Documentation
-Provides:	qt5-assistant-tools
 Requires:	qt5-qtbase-database-plugin-sqlite
 
-%description	assistant
+%description -n	qt%{api}-assistant
 Qt Assistant provides a documentation Browser.
 
-%files		assistant
+%files	-n	qt%{api}-assistant
 %{_qt5_bindir}/assistant*
 %{_qt5_bindir}/qcollectiongen*
 %{_qt5_bindir}/qhelpconv*
@@ -76,35 +69,53 @@ Qt Assistant provides a documentation Browser.
 
 #------------------------------------------------------------------------------
 
-%package	designer
+%package -n	qt%{api}-designer
 Summary:	%{name} Visual Design Tool
 Group:		Development/KDE and Qt
-Provides:	qt5-designer-tools
 
-%description	designer
+%description -n	qt%{api}-designer
 The Qt Designer is a visual design tool that makes designing and
 implementing user interfaces a lot easier.
 
-%files		designer
+%files	-n	qt%{api}-designer
 %{_qt5_bindir}/design*
 %{_qt5_plugindir}/designer
 %{_datadir}/applications/*designer*.desktop
 
 #------------------------------------------------------------------------------
 
-%package	linguist
+%package -n	qt%{api}-linguist
 Summary:	%{name} Visual Design Tool
 Group:		Development/KDE and Qt
-Provides:	qt5-linguist-tools
 
-%description	linguist
+%description -n	qt%{api}-linguist
 Translation tool for Qt based applications
 
-%files		linguist
-%{_qt5_bindir}/linguist*
-%{_qt5_plugindir}/linguist
+%files	-n	qt%{api}-linguist
+%{_qt5_datadir}/phrasebooks
 %{_datadir}/applications/*linguist*.desktop
+#FIXME: in the good package ?
+%{_qt5_exampledir}/linguist
 
+#------------------------------------------------------------------------------
+%package -n	qt%{api}-linguist-tools
+Summary:	%{name} Visual Design Tool
+Group:		Development/KDE and Qt
+Provides:	qt5-linguist-tools = %{version}
+Requires:	qt%{api}-linguist = %{version}
+
+%description -n	qt%{api}-linguist-tools
+Translation tool for Qt based applications
+
+%files	-n	qt%{api}-linguist-tools
+%{_qt5_bindir}/lconvert
+%{_qt5_bindir}/lrelease
+%{_qt5_bindir}/lupdate
+%{_qt5_bindir}/linguist*
+#FIXME: Find a better place
+%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake
+%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake
+%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfigVersion.cmake
 #------------------------------------------------------------------------------
 
 %package	qtdbus
@@ -158,10 +169,6 @@ Devel files needed to build apps based on QtJsonDbCompat.
 %{_qt5_exampledir}/help/
 %{_qt5_prefix}/mkspecs/modules/qt_lib_help.pri
 %{_qt5_prefix}/mkspecs/modules/qt_lib_help_private.pri
-#FIXME: Find a better place
-%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake
-%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake
-%{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfigVersion.cmake
 %if "%{_qt5_libdir}" != "%{_libdir}"
 %{_libdir}/pkgconfig/Qt%{api}Help.pc
 %endif
@@ -207,7 +214,6 @@ Devel files needed to build apps based on QtCLucene.
 %package -n	%{qtdesigner}
 Summary:	Qt%{api} Component Library
 Group:		System/Libraries
-Provides:	qtdesignerlib = %{version}
 
 %description -n %{qtdesigner}
 Qt%{api} Component Library.
