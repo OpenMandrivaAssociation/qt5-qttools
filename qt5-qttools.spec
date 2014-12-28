@@ -45,14 +45,12 @@ Qt GUI tools
 
 %files
 %{_qt5_bindir}/lconvert
-%{_qt5_bindir}/linguist
 %{_qt5_bindir}/lrelease
 %{_qt5_bindir}/lupdate
 %{_qt5_bindir}/pixeltool
 %{_qt5_bindir}/qtpaths
 %{_qt5_bindir}/qtdiag
 %{_qt5_datadir}/phrasebooks
-%{_datadir}/applications/*linguist*.desktop
 #FIXME: in the good package ?
 %{_qt5_exampledir}/linguist
 
@@ -61,6 +59,7 @@ Qt GUI tools
 %package	assistant
 Summary:	Qt%{api} Assistant Doc Utility
 Group:		Documentation
+Provides:	qt5-assistant-tools
 Requires:	qt5-qtbase-database-plugin-sqlite
 
 %description	assistant
@@ -80,6 +79,7 @@ Qt Assistant provides a documentation Browser.
 %package	designer
 Summary:	%{name} Visual Design Tool
 Group:		Development/KDE and Qt
+Provides:	qt5-designer-tools
 
 %description	designer
 The Qt Designer is a visual design tool that makes designing and
@@ -89,6 +89,21 @@ implementing user interfaces a lot easier.
 %{_qt5_bindir}/design*
 %{_qt5_plugindir}/designer
 %{_datadir}/applications/*designer*.desktop
+
+#------------------------------------------------------------------------------
+
+%package	linguist
+Summary:	%{name} Visual Design Tool
+Group:		Development/KDE and Qt
+Provides:	qt5-linguist-tools
+
+%description	linguist
+Translation tool for Qt based applications
+
+%files		linguist
+%{_qt5_bindir}/linguist*
+%{_qt5_plugindir}/linguist
+%{_datadir}/applications/*linguist*.desktop
 
 #------------------------------------------------------------------------------
 
