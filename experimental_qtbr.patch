@@ -1,0 +1,16 @@
+diff --git a/src/designer/src/lib/shared/shared.pri b/src/designer/src/lib/shared/shared.pri
+index cf530af..de707e4 100644
+--- a/src/designer/src/lib/shared/shared.pri
++++ b/src/designer/src/lib/shared/shared.pri
+@@ -8,9 +8,9 @@ INCLUDEPATH += $$PWD
+ # and use only the include path in the property editor (see propertyeditor.pri)
+ 
+ contains(CONFIG, static) {
+-    include(../../../../shared/qtpropertybrowser/qtpropertybrowser.pri)
++    include(../../../shared/qtpropertybrowser/qtpropertybrowser.pri)
+ } else {
+-   include(../../../../shared/qtpropertybrowser/qtpropertybrowserutils.pri)
++   include(../../../shared/qtpropertybrowser/qtpropertybrowserutils.pri)
+ }
+ 
+ include(../../../../shared/deviceskin/deviceskin.pri)
