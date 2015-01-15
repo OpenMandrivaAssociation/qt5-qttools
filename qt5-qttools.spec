@@ -34,7 +34,7 @@ Source2:	openmandriva-designer-qt5.desktop
 Source3:	openmandriva-linguist-qt5.desktop
 Source100:	qt5-qttools.rpmlintrc
 Patch0:		qttools-opensource-src-5.2.0-qmake-qt5.patch
-#Patch1:		experimental_qtbr.patch
+Patch1:		lrelease-zlib.patch
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
