@@ -296,6 +296,14 @@ Devel files needed to build apps based on QtDesigner.
 %prep
 %setup -q -n %qttarballdir
 %apply_patches
+# thermonuclear hack
+# use it or investigate what's wrong with
+# *** No rule to make target '../../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp',
+# needed by '.obj/qtpropertybrowserutils.o'.
+# hint: path too long, should be ../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp
+%ifarch %{arm}
+ln -sf src/shared/ shared
+%endif
 
 %build
 %qmake_qt5
