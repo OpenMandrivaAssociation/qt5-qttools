@@ -21,7 +21,7 @@ Name:		qt5-qttools
 Version:	5.5.0
 %if "%{beta}" != ""
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
-Release:	0.%{beta}.2
+Release:	0.%{beta}.3
 %else
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 Release:	1
@@ -44,7 +44,7 @@ BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5DBus)
 
 %description
-Qt GUI tools
+Qt GUI tools.
 
 %files
 %{_qt5_bindir}/pixeltool
@@ -126,13 +126,13 @@ Translation tool for Qt based applications
 Summary:	Qt%{api} Dbus Binary
 Group:		Development/KDE and Qt
 
-%description	qtdbus
+%description qtdbus
 Qt%{api} Dbus Binary.
 
 The QtDBus module is a Unix-only library that you can use to perform 
 Inter-Process Communication using the D-Bus protocol.
 
-%files	qtdbus
+%files qtdbus
 %{_qt5_bindir}/qdbus
 %{_qt5_bindir}/qdbusviewer
 
@@ -159,7 +159,7 @@ Summary:	Devel files needed to build apps based on QtJsonDbCompat
 Group:		Development/KDE and Qt
 Requires:	%{qthelp} = %{EVRD}
 Requires:	%{name} = %{EVRD}
-Requires:	qt5-qtbase-devel = %{EVRD}
+Requires:	qt5-qtbase-devel >= %{version}
 
 %description -n %{qthelpd}
 Devel files needed to build apps based on QtJsonDbCompat.
