@@ -21,7 +21,7 @@ Name:		qt5-qttools
 Version:	5.5.0
 %if "%{beta}" != ""
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
-Release:	0.%{beta}.1
+Release:	0.%{beta}.2
 %else
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 Release:	1
@@ -105,8 +105,8 @@ Translation tool for Qt based applications
 %package -n	qt%{api}-linguist-tools
 Summary:	%{name} Visual Design Tool
 Group:		Development/KDE and Qt
-Provides:	qt5-linguist-tools = %{version}
-Requires:	qt%{api}-linguist = %{version}
+Provides:	qt5-linguist-tools = %{EVRD}
+Requires:	qt%{api}-linguist = %{EVRD}
 
 %description -n	qt%{api}-linguist-tools
 Translation tool for Qt based applications
@@ -141,7 +141,7 @@ Inter-Process Communication using the D-Bus protocol.
 %package -n %{qthelp}
 Summary:	Qt%{api} Component Library
 Group:		System/Libraries
-Provides:	qthelplib = %{version}
+Provides:	qthelplib = %{EVRD}
 
 %description -n %{qthelp}
 Qt%{api} Component Library.
@@ -157,9 +157,9 @@ in applications.
 %package -n	%{qthelpd}
 Summary:	Devel files needed to build apps based on QtJsonDbCompat
 Group:		Development/KDE and Qt
-Requires:	%{qthelp} = %version
-Requires:	%{name} = %version
-Requires:	qt5-qtbase-devel = %version
+Requires:	%{qthelp} = %{EVRD}
+Requires:	%{name} = %{EVRD}
+Requires:	qt5-qtbase-devel = %{EVRD}
 
 %description -n %{qthelpd}
 Devel files needed to build apps based on QtJsonDbCompat.
@@ -182,7 +182,7 @@ Devel files needed to build apps based on QtJsonDbCompat.
 %package -n	%{qtclucene}
 Summary:	Qt%{api} Component Library
 Group:		System/Libraries
-Provides:	qtclucenelib = %{version}
+Provides:	qtclucenelib = %{EVRD}
 
 %description -n %{qtclucene}
 Qt%{api} Component Library.
@@ -198,7 +198,7 @@ Qt%{api} Component Library.
 %package -n	%{qtclucened}
 Summary:	Devel files needed to build apps based on QtCLucene
 Group:		Development/KDE and Qt
-Requires:	%{qtclucene} = %version
+Requires:	%{qtclucene} = %{EVRD}
 
 %description -n %{qtclucened}
 Devel files needed to build apps based on QtCLucene.
@@ -266,7 +266,8 @@ Development files for Qt Designer Components.
 %package -n	%{qtdesignerd}
 Summary:	Devel files needed to build apps based on QtDesigner
 Group:		Development/KDE and Qt
-Requires:	%{qtdesigner} = %version
+Requires:	%{qtdesigner} = %{EVRD}
+Requires:	qt%{api}-designer = %{EVRD}
 
 %description -n %{qtdesignerd}
 Devel files needed to build apps based on QtDesigner.
