@@ -273,6 +273,12 @@ Requires:	qt%{api}-designer = %{EVRD}
 Devel files needed to build apps based on QtDesigner.
 
 %files -n	%{qtdesignerd}
+#FIXME: find better place
+%{_qt5_includedir}/QtUiPlugin
+%{_qt5_libdir}/cmake/Qt5UiPlugin/Qt5UiPluginConfig.cmake
+%{_qt5_libdir}/cmake/Qt5UiPlugin/Qt5UiPluginConfigVersion.cmake
+%{_qt5_prefix}/mkspecs/modules/qt_lib_uiplugin.pri
+#
 %{_qt5_includedir}/QtDesigner
 %{_qt5_libdir}/libQt%{api}Designer.so
 %{_qt5_libdir}/libQt%{api}Designer.prl
