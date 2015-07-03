@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta rc
+%define beta %nil
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -21,10 +21,10 @@ Name:		qt5-qttools
 Version:	5.5.0
 %if "%{beta}" != ""
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
-$1.%{beta}.1
+Release:	1.%{beta}.1
 %else
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
-$1
+Release:	1
 %endif
 Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
