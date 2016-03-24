@@ -47,6 +47,7 @@ BuildRequires:	pkgconfig(Qt5Sql)
 BuildRequires:	pkgconfig(Qt5Xml)
 BuildRequires:	pkgconfig(Qt5Network)
 BuildRequires:	pkgconfig(Qt5PrintSupport)
+BuildRequires:	pkgconfig(Qt5Qml)
 
 %description
 Qt tools.
@@ -319,8 +320,6 @@ ln -sf src/shared/ shared
 %endif
 
 %build
-# (tpg) https://bugreports.qt.io/browse/QTBUG-51409
-export QT_NO_DECLARATIVE
 %qmake_qt5
 
 %make
