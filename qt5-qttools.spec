@@ -46,6 +46,7 @@ BuildRequires:	pkgconfig(Qt5DBus)
 BuildRequires:	pkgconfig(Qt5Sql)
 BuildRequires:	pkgconfig(Qt5Xml)
 BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5PrintSupport)
 
 %description
 Qt tools.
