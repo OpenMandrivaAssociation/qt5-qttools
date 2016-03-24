@@ -38,14 +38,13 @@ Source100:	qt5-qttools.rpmlintrc
 Patch0:		qttools-opensource-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
-BuildRequires:	qt5-qtbase-devel
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5DBus)
 
 %description
-Qt GUI tools.
+Qt tools.
 
 %files
 %{_qt5_bindir}/pixeltool
@@ -160,7 +159,6 @@ Summary:	Devel files needed to build apps based on QtJsonDbCompat
 Group:		Development/KDE and Qt
 Requires:	%{qthelp} = %{EVRD}
 Requires:	%{name} = %{EVRD}
-Requires:	qt5-qtbase-devel >= %{version}
 
 %description -n %{qthelpd}
 Devel files needed to build apps based on QtJsonDbCompat.
@@ -316,6 +314,8 @@ ln -sf src/shared/ shared
 %endif
 
 %build
+# (tpg) https://bugreports.qt.io/browse/QTBUG-51409
+export QT_NO_DECLARATIVE
 %qmake_qt5
 
 %make
