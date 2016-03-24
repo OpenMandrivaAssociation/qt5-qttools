@@ -38,6 +38,7 @@ Source100:	qt5-qttools.rpmlintrc
 Patch0:		qttools-opensource-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
+BuildRequires:  qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5Gui)
