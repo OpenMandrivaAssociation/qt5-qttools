@@ -214,11 +214,7 @@ Devel files needed to build apps based on QtCLucene.
 %{_qt5_includedir}/QtCLucene
 %{_qt5_libdir}/libQt%{api}CLucene.so
 %{_qt5_libdir}/libQt%{api}CLucene.prl
-%{_qt5_libdir}/pkgconfig/Qt%{api}CLucene.pc
 %{_qt5_prefix}/mkspecs/modules/qt_lib_clucene_private.pri
-%if "%{_qt5_libdir}" != "%{_libdir}"
-%{_libdir}/pkgconfig/Qt%{api}CLucene.pc
-%endif
 
 #------------------------------------------------------------------------------
 
@@ -265,10 +261,6 @@ Development files for Qt Designer Components.
 %{_qt5_includedir}/QtDesignerComponents
 %{_qt5_libdir}/libQt%{api}DesignerComponents.so
 %{_qt5_libdir}/libQt%{api}DesignerComponents.prl
-%{_qt5_libdir}/pkgconfig/Qt%{api}DesignerComponents.pc
-%if "%{_qt5_libdir}" != "%{_libdir}"
-%{_libdir}/pkgconfig/Qt%{api}DesignerComponents.pc
-%endif
 
 %package -n	%{qtdesignerd}
 Summary:	Devel files needed to build apps based on QtDesigner
