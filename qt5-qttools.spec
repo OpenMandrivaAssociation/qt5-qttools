@@ -320,7 +320,7 @@ Devel files needed to build apps based on QtDesigner.
 # *** No rule to make target '../../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp',
 # needed by '.obj/qtpropertybrowserutils.o'.
 # hint: path too long, should be ../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp
-%ifarch %{armx} x86_64
+%ifarch %{armx} x86_64 %{ix86}
 ln -sf src/shared/ shared
 %endif
 
