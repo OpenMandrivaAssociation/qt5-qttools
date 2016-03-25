@@ -58,6 +58,7 @@ Qt tools.
 %{_qt5_bindir}/qtpaths
 %{_qt5_bindir}/qtdiag
 %{_qt5_bindir}/qtplugininfo
+%{_qt5_bindir}/qdoc
 
 #------------------------------------------------------------------------------
 
