@@ -19,11 +19,11 @@
 Name:		qt5-qttools
 Version:	5.6.0
 %if "%{beta}" != ""
-Release:	1.%{beta}.1
+Release:	0.%{beta}.1
 %define qttarballdir qttools-opensource-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qttools-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -58,6 +58,17 @@ Qt tools.
 %{_qt5_bindir}/qtpaths
 %{_qt5_bindir}/qtdiag
 %{_qt5_bindir}/qtplugininfo
+
+#----------------------------------------------------------------------------
+
+%package -n qdoc%{api}
+Summary:	Qt documentation generator, version 5
+Group:		Development/KDE and Qt
+
+%description -n qdoc%{api}
+Qt documentation generator, version 5.
+
+%files -n qdoc%{api}
 %{_qt5_bindir}/qdoc
 
 #------------------------------------------------------------------------------
