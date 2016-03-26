@@ -326,9 +326,7 @@ ln -sf src/shared/ shared
 
 %build
 %qmake_qt5
-
-# (tpg) disable parallel build, to fix missing headers
-%make -j1
+%make
 
 #------------------------------------------------------------------------------
 
