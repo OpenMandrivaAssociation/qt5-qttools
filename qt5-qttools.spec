@@ -19,11 +19,11 @@
 Name:		qt5-qttools
 Version:	5.6.1
 %if "%{beta}" != ""
-Release:	1.%{beta}.1
+Release:	0.%{beta}.1
 %define qttarballdir qttools-opensource-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qttools-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -326,6 +326,16 @@ ln -sf src/shared/ shared
 
 %build
 %qmake_qt5
+%make
+
+# uitools is a static library -- putting LLVM bytecode in there
+# wreaks havoc for anything trying to link to it without using lto
+# (or even using gcc)
+# Let's rebuild it without lto...
+rm lib/libQt5UiTools.a
+sed -i -e 's,-flto,,g' src/designer/src/uitools/Makefile
+cd src/designer/src/uitools
+make clean
 %make
 
 #------------------------------------------------------------------------------
