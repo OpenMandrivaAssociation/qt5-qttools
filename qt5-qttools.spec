@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.6.1
+Version:	5.6.2
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-opensource-src-%{version}-%{beta}
