@@ -1,4 +1,2 @@
-removed_sources:
-  qttools-opensource-src-5.5.1.tar.xz: f7815165d0b427346028901a42be5f0f47d05962
 sources:
-  qttools-opensource-src-5.7.0.tar.xz: 235287cc39426e99e6870e63951f7db9a285ad0c
+  qttools-opensource-src-5.8.0-beta.tar.xz: ad1233ac00670421db11f61e1fc8274d299615f6
