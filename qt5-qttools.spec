@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta alpha
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.8.0
+Version:	5.9.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-opensource-src-%{version}-%{beta}
