@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta alpha
+%define beta beta4
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -195,38 +195,6 @@ Devel files needed to build apps based on QtJsonDbCompat.
 %if "%{_qt5_libdir}" != "%{_libdir}"
 %{_libdir}/pkgconfig/Qt%{api}Help.pc
 %endif
-
-#------------------------------------------------------------------------------
-
-%package -n	%{qtclucene}
-Summary:	Qt%{api} Component Library
-Group:		System/Libraries
-Provides:	qtclucenelib = %{EVRD}
-
-%description -n %{qtclucene}
-Qt%{api} Component Library.
-
-%files -n	%{qtclucene}
-%{_qt5_libdir}/libQt%{api}CLucene.so.%{major}*
-%if "%{_qt5_libdir}" != "%{_libdir}"
-%{_libdir}/libQt%{api}CLucene.so.%{major}*
-%endif
-
-#------------------------------------------------------------------------------
-
-%package -n	%{qtclucened}
-Summary:	Devel files needed to build apps based on QtCLucene
-Group:		Development/KDE and Qt
-Requires:	%{qtclucene} = %{EVRD}
-
-%description -n %{qtclucened}
-Devel files needed to build apps based on QtCLucene.
-
-%files -n %{qtclucened}
-%{_qt5_includedir}/QtCLucene
-%{_qt5_libdir}/libQt%{api}CLucene.so
-%{_qt5_libdir}/libQt%{api}CLucene.prl
-%{_qt5_prefix}/mkspecs/modules/qt_lib_clucene_private.pri
 
 #------------------------------------------------------------------------------
 
