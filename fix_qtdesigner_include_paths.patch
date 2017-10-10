@@ -1,8 +1,6 @@
-diff --git a/src/designer/src/lib/shared/qdesigner_command.cpp b/src/designer/src/lib/shared/qdesigner_command.cpp
-index 637bb1d..cba6213 100644
---- a/src/designer/src/lib/shared/qdesigner_command.cpp
-+++ b/src/designer/src/lib/shared/qdesigner_command.cpp
-@@ -49,7 +49,7 @@
+--- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_command.cpp.0002~	2017-09-25 11:18:33.000000000 +0200
++++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_command.cpp	2017-10-10 23:55:27.654613156 +0200
+@@ -36,7 +36,7 @@
  #include "shared_enums_p.h"
  #include "metadatabase_p.h"
  #include "formwindowbase_p.h"
@@ -11,11 +9,9 @@ index 637bb1d..cba6213 100644
  
  #include <QtDesigner/QDesignerFormWindowInterface>
  #include <QtDesigner/QDesignerFormEditorInterface>
-diff --git a/src/designer/src/lib/shared/qdesigner_utils.cpp b/src/designer/src/lib/shared/qdesigner_utils.cpp
-index f40959c..c14e36d 100644
---- a/src/designer/src/lib/shared/qdesigner_utils.cpp
-+++ b/src/designer/src/lib/shared/qdesigner_utils.cpp
-@@ -41,9 +41,9 @@
+--- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_utils.cpp.0002~	2017-09-25 11:18:33.000000000 +0200
++++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_utils.cpp	2017-10-10 23:55:27.654613156 +0200
+@@ -28,9 +28,9 @@
  
  #include "qdesigner_utils_p.h"
  #include "qdesigner_propertycommand_p.h"
@@ -26,17 +22,14 @@ index f40959c..c14e36d 100644
  #include <QtDesigner/QDesignerFormEditorInterface>
  #include <QtDesigner/QDesignerFormWindowInterface>
  #include <QtDesigner/QDesignerResourceBrowserInterface>
-diff --git a/src/designer/src/lib/shared/qsimpleresource_p.h b/src/designer/src/lib/shared/qsimpleresource_p.h
-index bdc63ce..61b4a89 100644
---- a/src/designer/src/lib/shared/qsimpleresource_p.h
-+++ b/src/designer/src/lib/shared/qsimpleresource_p.h
-@@ -54,7 +54,7 @@
+--- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qsimpleresource_p.h.0002~	2017-10-10 23:55:27.654613156 +0200
++++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qsimpleresource_p.h	2017-10-10 23:56:04.802647009 +0200
+@@ -41,7 +41,7 @@
  #define QSIMPLERESOURCE_H
  
  #include "shared_global_p.h"
 -#include "abstractformbuilder.h"
 +#include <QtDesigner/abstractformbuilder.h>
  #include <QtCore/QStringList>
+ #include <QtCore/QVector>
  
- QT_BEGIN_NAMESPACE
-
