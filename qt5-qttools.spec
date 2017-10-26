@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta beta
+%define beta beta2
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -20,7 +20,7 @@ Name:		qt5-qttools
 Version:	5.10.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
-%define qttarballdir qttools-everywhere-src-%{version}-%{beta}
+%define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
 Release:	1
