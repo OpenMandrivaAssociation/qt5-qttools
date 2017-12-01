@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta rc1
+%define beta rc2
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
