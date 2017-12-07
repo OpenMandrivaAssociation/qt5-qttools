@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta rc3
+%define beta %{nil}
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -24,7 +24,7 @@ Release:	0.%{beta}.1
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
 Release:	1
-%define qttarballdir qttools-opensource-src-%{version}
+%define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 Summary:	Qt GUI toolkit
@@ -35,7 +35,7 @@ Source1:	openmandriva-assistant-qt5.desktop
 Source2:	openmandriva-designer-qt5.desktop
 Source3:	openmandriva-linguist-qt5.desktop
 Source100:	qt5-qttools.rpmlintrc
-Patch0:		qttools-opensource-src-5.2.0-qmake-qt5.patch
+Patch0:		qttools-everywhere-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 BuildRequires:  qmake5
