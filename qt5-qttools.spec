@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -331,5 +331,8 @@ s@-I/usr/X11R6/include @@g;\
 s@-L/%{_builddir}\S+@@g'\
     `find . -name \*.pc`
 
-# .la and .a files, die, die, die.
+# Fix reference to non-existing pkgconfig module
+sed -i -e 's,Qt5UiPlugin,Qt5UiTools,g' %{buildroot}%{_libdir}/pkgconfig/Qt5Designer.pc
+
+# .la files, die, die, die.
 rm -f %{buildroot}%{_qt5_libdir}/lib*.la
