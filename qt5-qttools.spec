@@ -50,6 +50,8 @@ BuildRequires:	pkgconfig(Qt5PrintSupport)
 BuildRequires:	pkgconfig(Qt5Qml)
 BuildRequires:	qt5-qtqml-private-devel
 BuildRequires:	clang-devel
+# For the Provides: generator
+BuildRequires:	cmake >= 3.11.0-1
 
 %description
 Qt tools.
