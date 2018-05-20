@@ -49,6 +49,7 @@ BuildRequires:	pkgconfig(Qt5Xml)
 BuildRequires:	pkgconfig(Qt5Network)
 BuildRequires:	pkgconfig(Qt5PrintSupport)
 BuildRequires:	pkgconfig(Qt5Qml)
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	qt5-qtqml-private-devel
 BuildRequires:	clang-devel
 # For the Provides: generator
