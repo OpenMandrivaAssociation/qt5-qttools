@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.11.1
+Version:	5.11.2
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
@@ -287,8 +287,8 @@ Devel files needed to build apps based on QtDesigner.
 #------------------------------------------------------------------------------
 
 %prep
-%setup -q -n %qttarballdir
-%apply_patches
+%autosetup -n %qttarballdir -p1
+
 # thermonuclear hack
 # use it or investigate what's wrong with
 # *** No rule to make target '../../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp',
@@ -300,7 +300,7 @@ ln -sf src/shared/ shared
 
 %build
 %qmake_qt5
-%make
+%make_build
 
 # uitools is a static library -- putting LLVM bytecode in there
 # wreaks havoc for anything trying to link to it without using lto
@@ -310,12 +310,12 @@ rm lib/libQt5UiTools.a
 sed -i -e 's,-flto,,g' src/designer/src/uitools/Makefile
 cd src/designer/src/uitools
 make clean
-%make
+%make_build
 
 #------------------------------------------------------------------------------
 
 %install
-%makeinstall_std INSTALL_ROOT=%{buildroot}
+%make_install INSTALL_ROOT=%{buildroot}
 
 mkdir -p %{buildroot}/%{_datadir}/applications
 install -m 644 %SOURCE1 %{buildroot}/%{_datadir}/applications
