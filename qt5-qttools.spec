@@ -39,7 +39,7 @@ Patch0:		qttools-everywhere-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.11.0-clang-7.0.patch
-BuildRequires:  qmake5
+BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5Gui)
@@ -87,7 +87,7 @@ Requires:	qt5-qtbase-database-plugin-sqlite
 %description -n	qt%{api}-assistant
 Qt Assistant provides a documentation Browser.
 
-%files	-n	qt%{api}-assistant
+%files -n qt%{api}-assistant
 %{_qt5_bindir}/assistant*
 %{_qt5_bindir}/qcollectiongen*
 %{_qt5_bindir}/qhelpconv*
@@ -294,7 +294,7 @@ Devel files needed to build apps based on QtDesigner.
 # *** No rule to make target '../../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp',
 # needed by '.obj/qtpropertybrowserutils.o'.
 # hint: path too long, should be ../../../shared/qtpropertybrowser/qtpropertybrowserutils.cpp
-%ifarch %{armx} x86_64 %{ix86}
+%ifarch %{armx} %{x86_64} %{ix86}
 ln -sf src/shared/ shared
 %endif
 
