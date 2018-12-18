@@ -1,5 +1,6 @@
---- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_command.cpp.0002~	2017-09-25 11:18:33.000000000 +0200
-+++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_command.cpp	2017-10-10 23:55:27.654613156 +0200
+diff -up qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_command.cpp.3~ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_command.cpp
+--- qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_command.cpp.3~	2018-12-17 02:32:48.788799682 +0100
++++ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_command.cpp	2018-12-17 02:33:22.265202470 +0100
 @@ -36,7 +36,7 @@
  #include "shared_enums_p.h"
  #include "metadatabase_p.h"
@@ -7,10 +8,11 @@
 -#include <abstractformbuilder.h>
 +#include <QtDesigner/abstractformbuilder.h>
  
- #include <QtDesigner/QDesignerFormWindowInterface>
- #include <QtDesigner/QDesignerFormEditorInterface>
---- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_utils.cpp.0002~	2017-09-25 11:18:33.000000000 +0200
-+++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qdesigner_utils.cpp	2017-10-10 23:55:27.654613156 +0200
+ #include <QtDesigner/abstractformwindow.h>
+ #include <QtDesigner/abstractformeditor.h>
+diff -up qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_utils.cpp.3~ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_utils.cpp
+--- qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_utils.cpp.3~	2018-12-17 02:32:48.788799682 +0100
++++ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qdesigner_utils.cpp	2018-12-17 02:33:48.758522153 +0100
 @@ -28,9 +28,9 @@
  
  #include "qdesigner_utils_p.h"
@@ -19,17 +21,18 @@
  #include "formwindowbase_p.h"
  
 +#include <QtDesigner/abstractformbuilder.h>
- #include <QtDesigner/QDesignerFormEditorInterface>
- #include <QtDesigner/QDesignerFormWindowInterface>
- #include <QtDesigner/QDesignerResourceBrowserInterface>
---- qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qsimpleresource_p.h.0002~	2017-10-10 23:55:27.654613156 +0200
-+++ qttools-everywhere-src-5.10.0-beta/src/designer/src/lib/shared/qsimpleresource_p.h	2017-10-10 23:56:04.802647009 +0200
+ #include <QtDesigner/abstractformeditor.h>
+ #include <QtDesigner/abstractformwindow.h>
+ #include <QtDesigner/abstractresourcebrowser.h>
+diff -up qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qsimpleresource_p.h.3~ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qsimpleresource_p.h
+--- qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qsimpleresource_p.h.3~	2018-12-17 02:32:48.788799682 +0100
++++ qttools-everywhere-src-5.12.0/src/designer/src/lib/shared/qsimpleresource_p.h	2018-12-17 02:34:04.459711974 +0100
 @@ -41,7 +41,7 @@
  #define QSIMPLERESOURCE_H
  
  #include "shared_global_p.h"
 -#include "abstractformbuilder.h"
 +#include <QtDesigner/abstractformbuilder.h>
- #include <QtCore/QStringList>
- #include <QtCore/QVector>
+ #include <QtCore/qstringlist.h>
+ #include <QtCore/qvector.h>
  

@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.11.2
+Version:	5.12.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -60,6 +60,7 @@ Qt tools.
 
 %files
 %{_qt5_bindir}/pixeltool
+%{_qt5_bindir}/qdistancefieldgenerator
 %{_qt5_bindir}/qtpaths
 %{_qt5_bindir}/qtdiag
 %{_qt5_bindir}/qtplugininfo
@@ -89,8 +90,6 @@ Qt Assistant provides a documentation Browser.
 
 %files -n qt%{api}-assistant
 %{_qt5_bindir}/assistant*
-%{_qt5_bindir}/qcollectiongen*
-%{_qt5_bindir}/qhelpconv*
 %{_qt5_bindir}/qhelpgen*
 %{_datadir}/applications/*assistant*.desktop
 #FIXME: in the good package ?
