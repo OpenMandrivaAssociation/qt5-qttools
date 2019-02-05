@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.12.0
+Version:	5.12.1
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
@@ -38,7 +38,7 @@ Source100:	qt5-qttools.rpmlintrc
 Patch0:		qttools-everywhere-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
-Patch3:		qttools-5.11.0-clang-7.0.patch
+Patch3:		qttools-5.12.1-clang-7.0.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
@@ -66,6 +66,7 @@ Qt tools.
 %{_qt5_bindir}/qtdiag
 %{_qt5_bindir}/qtplugininfo
 %{_qt5_bindir}/qtattributionsscanner
+%{_qt5_bindir}/qcollectiongenerator
 
 #----------------------------------------------------------------------------
 

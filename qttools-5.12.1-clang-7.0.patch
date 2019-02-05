@@ -1,0 +1,12 @@
+diff -up qttools-everywhere-src-5.12.1/src/qdoc/configure.pri.omv~ qttools-everywhere-src-5.12.1/src/qdoc/configure.pri
+--- qttools-everywhere-src-5.12.1/src/qdoc/configure.pri.omv~	2019-02-06 00:10:14.238524516 +0100
++++ qttools-everywhere-src-5.12.1/src/qdoc/configure.pri	2019-02-06 00:10:31.051822875 +0100
+@@ -160,7 +160,7 @@ defineTest(qtConfTest_libclang) {
+                         -lclangRewriteFrontend \
+                         -lclangSema \
+                         -lclangSerialization \
+-                        -lclang_static \
++                        -lclang \
+                         -lclangStaticAnalyzerCheckers \
+                         -lclangStaticAnalyzerCore \
+                         -lclangStaticAnalyzerFrontend \
