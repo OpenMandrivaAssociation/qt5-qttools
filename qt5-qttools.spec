@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta rc3
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.12.3
+Version:	5.13.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
@@ -35,7 +35,6 @@ Source1:	openmandriva-assistant-qt5.desktop
 Source2:	openmandriva-designer-qt5.desktop
 Source3:	openmandriva-linguist-qt5.desktop
 Source100:	qt5-qttools.rpmlintrc
-Patch0:		qttools-everywhere-src-5.2.0-qmake-qt5.patch
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.12.1-clang-7.0.patch
@@ -139,8 +138,11 @@ Translation tool for Qt based applications
 
 %files	-n	qt%{api}-linguist-tools
 %{_qt5_bindir}/lconvert
+%{_qt5_bindir}/lprodump
 %{_qt5_bindir}/lrelease
+%{_qt5_bindir}/lrelease-pro
 %{_qt5_bindir}/lupdate
+%{_qt5_bindir}/lupdate-pro
 %{_qt5_bindir}/linguist*
 #FIXME: Find a better place
 %{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake
