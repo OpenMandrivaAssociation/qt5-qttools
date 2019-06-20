@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -275,7 +275,6 @@ Devel files needed to build apps based on QtDesigner.
 %{_qt5_exampledir}/designer
 %{_qt5_exampledir}/uitools
 %{_qt5_includedir}/QtUiTools
-%{_qt5_libdir}/libQt5UiTools.prl
 %{_qt5_libdir}/libQt5UiTools.a
 %{_qt5_libdir}/cmake/Qt5UiTools
 %{_qt5_prefix}/mkspecs/modules/qt_lib_designer.pri
@@ -342,5 +341,7 @@ s@-L/%{_builddir}\S+@@g'\
 # Fix reference to non-existing pkgconfig module
 sed -i -e 's,Qt5UiPlugin,Qt5UiTools,g' %{buildroot}%{_libdir}/pkgconfig/Qt5Designer.pc
 
-# .la files, die, die, die.
-rm -f %{buildroot}%{_qt5_libdir}/lib*.la
+# The .prl file breaks building kjsembed because it changes Qt library paths
+# to $QTDIR/lib instead of plain old libdir
+# There's no point in prl files anyway, so let's dump it...
+rm -f %{buildroot}%{_libdir}/libQt5UiTools.prl
