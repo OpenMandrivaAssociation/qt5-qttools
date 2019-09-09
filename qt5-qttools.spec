@@ -19,7 +19,7 @@
 Name:		qt5-qttools
 Version:	5.13.1
 %if "%{beta}" != ""
-Release:	1
+Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
