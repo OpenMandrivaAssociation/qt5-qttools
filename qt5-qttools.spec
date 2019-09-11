@@ -249,6 +249,7 @@ Development files for Qt Designer Components.
 %{_qt5_includedir}/QtDesignerComponents
 %{_qt5_libdir}/libQt%{api}DesignerComponents.so
 %{_qt5_libdir}/libQt%{api}DesignerComponents.prl
+%{_libdir}/cmake/Qt5DesignerComponents
 
 %package -n	%{qtdesignerd}
 Summary:	Devel files needed to build apps based on QtDesigner
@@ -265,6 +266,8 @@ Devel files needed to build apps based on QtDesigner.
 %{_qt5_libdir}/cmake/Qt5UiPlugin/Qt5UiPluginConfig.cmake
 %{_qt5_libdir}/cmake/Qt5UiPlugin/Qt5UiPluginConfigVersion.cmake
 %{_qt5_prefix}/mkspecs/modules/qt_lib_uiplugin.pri
+%{_libdir}/libQt5UiPlugin.prl
+%{_libdir}/pkgconfig/Qt5UiPlugin.pc
 #
 %{_qt5_includedir}/QtDesigner
 %{_qt5_libdir}/libQt%{api}Designer.so
