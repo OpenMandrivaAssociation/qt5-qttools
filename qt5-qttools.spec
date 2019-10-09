@@ -1,6 +1,6 @@
 %define api %(echo %version |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta beta1
 
 %define qthelp %mklibname qt%{api}help %{major}
 %define qthelpd %mklibname qt%{api}help -d
@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.13.1
+Version:	5.14.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
-Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
+Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	3
+Release:	1
 %define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -86,6 +86,8 @@ Qt documentation generator, version 5.
 %files -n qdoc%{api}
 %{_qt5_bindir}/qdoc
 %{_bindir}/qdoc
+%{_libdir}/cmake/Qt5AttributionsScannerTools
+%{_libdir}/cmake/Qt5DocTools
 
 #------------------------------------------------------------------------------
 
@@ -223,6 +225,7 @@ Devel files needed to build apps based on QtJsonDbCompat.
 %if "%{_qt5_libdir}" != "%{_libdir}"
 %{_libdir}/pkgconfig/Qt%{api}Help.pc
 %endif
+
 
 #------------------------------------------------------------------------------
 
