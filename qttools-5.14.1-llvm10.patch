@@ -1,0 +1,23 @@
+diff -up qttools-everywhere-src-5.14.1/src/qdoc/configure.pri.4~ qttools-everywhere-src-5.14.1/src/qdoc/configure.pri
+--- qttools-everywhere-src-5.14.1/src/qdoc/configure.pri.4~	2020-02-07 18:14:35.902695811 +0100
++++ qttools-everywhere-src-5.14.1/src/qdoc/configure.pri	2020-02-07 18:46:47.285780975 +0100
+@@ -1,7 +1,7 @@
+-defineReplace(extractVersion)      { return($$replace(1, ^(\\d+\\.\\d+\\.\\d+)(svn)?$, \\1)) }
+-defineReplace(extractMajorVersion) { return($$replace(1, ^(\\d+)\\.\\d+\\.\\d+(svn)?$, \\1)) }
+-defineReplace(extractMinorVersion) { return($$replace(1, ^\\d+\\.(\\d+)\\.\\d+(svn)?$, \\1)) }
+-defineReplace(extractPatchVersion) { return($$replace(1, ^\\d+\\.\\d+\\.(\\d+)(svn)?$, \\1)) }
++defineReplace(extractVersion)      { return($$replace(1, ^(\\d+\\.\\d+\\.\\d+)(svn|git|rc[0-9]*)?$, \\1)) }
++defineReplace(extractMajorVersion) { return($$replace(1, ^(\\d+)\\.\\d+\\.\\d+(svn|git|rc[0-9]*)?$, \\1)) }
++defineReplace(extractMinorVersion) { return($$replace(1, ^\\d+\\.(\\d+)\\.\\d+(svn|git|rc[0-9]*)?$, \\1)) }
++defineReplace(extractPatchVersion) { return($$replace(1, ^\\d+\\.\\d+\\.(\\d+)(svn|git|rc[0-9]*)?$, \\1)) }
+ 
+ defineTest(versionIsAtLeast) {
+     actual_major_version = $$extractMajorVersion($$1)
+@@ -57,6 +57,7 @@ defineTest(qtConfTest_libclang) {
+     # Assume libclang is installed on the target system
+     isEmpty(LLVM_INSTALL_DIR) {
+         llvmConfigCandidates = \
++            llvm-config-10 \
+             llvm-config-9 \
+             llvm-config-8 \
+             llvm-config-7 \
