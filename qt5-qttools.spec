@@ -331,7 +331,7 @@ ln -sf src/shared/ shared
 
 %build
 %qmake_qt5
-%make_build
+make -j1
 
 # uitools is a static library -- putting LLVM bytecode in there
 # wreaks havoc for anything trying to link to it without using lto
