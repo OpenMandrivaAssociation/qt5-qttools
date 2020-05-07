@@ -39,7 +39,6 @@ Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.12.1-clang-7.0.patch
 Patch4:		qttools-5.14.1-llvm10.patch
-Patch5:		qttools-5.15-rc-compile.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
@@ -331,7 +330,7 @@ ln -sf src/shared/ shared
 
 %build
 %qmake_qt5
-make -j1
+%make_build
 
 # uitools is a static library -- putting LLVM bytecode in there
 # wreaks havoc for anything trying to link to it without using lto
