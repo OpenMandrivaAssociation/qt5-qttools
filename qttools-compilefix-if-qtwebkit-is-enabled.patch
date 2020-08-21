@@ -1,0 +1,17 @@
+diff -up qttools-everywhere-src-5.15.0/helpviewer_qwv.cpp.omv~ qttools-everywhere-src-5.15.0/helpviewer_qwv.cpp
+diff -up qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qtb.cpp.omv~ qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qtb.cpp
+diff -up qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qwv.cpp.omv~ qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qwv.cpp
+--- qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qwv.cpp.omv~	2020-08-21 04:33:36.085470699 +0200
++++ qttools-everywhere-src-5.15.0/src/assistant/assistant/helpviewer_qwv.cpp	2020-08-21 04:35:23.619030762 +0200
+@@ -217,6 +217,11 @@ void HelpViewer::resetScale()
+     setZoomFactor(d->webDpiRatio);
+ }
+ 
++void HelpViewer::resizeEvent(QResizeEvent *e)
++{
++    QWebView::resizeEvent(e);
++}
++
+ qreal HelpViewer::scale() const
+ {
+     TRACE_OBJ
