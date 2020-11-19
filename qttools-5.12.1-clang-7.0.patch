@@ -1,12 +1,12 @@
-diff -up qttools-everywhere-src-5.12.1/src/qdoc/configure.pri.omv~ qttools-everywhere-src-5.12.1/src/qdoc/configure.pri
---- qttools-everywhere-src-5.12.1/src/qdoc/configure.pri.omv~	2019-02-06 00:10:14.238524516 +0100
-+++ qttools-everywhere-src-5.12.1/src/qdoc/configure.pri	2019-02-06 00:10:31.051822875 +0100
-@@ -160,7 +160,7 @@ defineTest(qtConfTest_libclang) {
-                         -lclangRewriteFrontend \
-                         -lclangSema \
-                         -lclangSerialization \
--                        -lclang_static \
-+                        -lclang \
-                         -lclangStaticAnalyzerCheckers \
-                         -lclangStaticAnalyzerCore \
-                         -lclangStaticAnalyzerFrontend \
+diff -up qttools-everywhere-src-5.15.2/src/qdoc/configure.pri.3~ qttools-everywhere-src-5.15.2/src/qdoc/configure.pri
+--- qttools-everywhere-src-5.15.2/src/qdoc/configure.pri.3~	2020-11-19 22:29:47.790589635 +0100
++++ qttools-everywhere-src-5.15.2/src/qdoc/configure.pri	2020-11-19 22:33:07.527313951 +0100
+@@ -185,7 +185,7 @@ defineTest(qtConfTest_libclang) {
+             equals(QMAKE_HOST.os, Windows): \
+                 CLANG_LIBS += -llibclang_static
+             else: \
+-                CLANG_LIBS += -lclang_static
++                CLANG_LIBS += -lclang
+ 
+             CLANG_LIBS += \
+                     -lclangApplyReplacements \

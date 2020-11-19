@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.1
+Version:	5.15.2
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
@@ -38,7 +38,6 @@ Source100:	qt5-qttools.rpmlintrc
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.12.1-clang-7.0.patch
-Patch4:		qttools-5.14.1-llvm10.patch
 Patch5:		qttools-compilefix-if-qtwebkit-is-enabled.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
