@@ -9,4 +9,4 @@ Terminal=false
 Type=Application
 StartupNotify=true
 MimeType=application/x-linguist;
-Categories=KDE;Qt;GUIDesigner;
+Categories=KDE;Qt;Development;

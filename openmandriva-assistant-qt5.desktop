@@ -8,4 +8,4 @@ Icon=documentation_section
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=KDE;Qt;Documentation;
+Categories=KDE;Qt;Documentation;Development;

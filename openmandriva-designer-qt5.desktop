@@ -8,4 +8,4 @@ Icon=development_environment_section
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=KDE;Qt;GUIDesigner;
+Categories=KDE;Qt;Development;
