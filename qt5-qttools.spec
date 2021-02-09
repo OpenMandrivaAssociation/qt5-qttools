@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	3
 %define qttarballdir qttools-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -38,7 +38,7 @@ Source100:	qt5-qttools.rpmlintrc
 Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.12.1-clang-7.0.patch
-Patch5:		qttools-compilefix-if-qtwebkit-is-enabled.patch
+Patch4:		qttools-compilefix-if-qtwebkit-is-enabled.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
@@ -56,6 +56,8 @@ BuildRequires:	qt5-qtqmlmodels-private-devel
 BuildRequires:	clang-devel llvm-devel
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
+# For scaling *.desktop icons
+BuildRequires:	imagemagick
 
 %description
 Qt tools.
@@ -107,6 +109,7 @@ Qt Assistant provides a documentation Browser.
 %{_bindir}/assistant*
 %{_bindir}/qhelpgen*
 %{_datadir}/applications/*assistant*.desktop
+%{_datadir}/icons/hicolor/*/apps/assistant.*
 #FIXME: in the good package ?
 %{_qt5_exampledir}/assistant
 
@@ -125,6 +128,7 @@ implementing user interfaces a lot easier.
 %{_bindir}/design*
 %{_qt5_plugindir}/designer
 %{_datadir}/applications/*designer*.desktop
+%{_datadir}/icons/hicolor/*/apps/QtProject-designer.*
 
 #------------------------------------------------------------------------------
 
@@ -138,6 +142,7 @@ Translation tool for Qt based applications
 %files	-n	qt%{api}-linguist
 %{_qt5_datadir}/phrasebooks
 %{_datadir}/applications/*linguist*.desktop
+%{_datadir}/icons/hicolor/*/apps/linguist.*
 #FIXME: in the good package ?
 %{_qt5_exampledir}/linguist
 
@@ -347,10 +352,17 @@ make clean
 %install
 %make_install INSTALL_ROOT=%{buildroot}
 
+# Make the menus great again...
 mkdir -p %{buildroot}/%{_datadir}/applications
 install -m 644 %SOURCE1 %{buildroot}/%{_datadir}/applications
 install -m 644 %SOURCE2 %{buildroot}/%{_datadir}/applications
 install -m 644 %SOURCE3 %{buildroot}/%{_datadir}/applications
+for i in 32 48 64 128; do
+	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps
+	convert -scale ${i}x${i} src/designer/src/designer/images/designer.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/QtProject-designer.png
+	convert -scale ${i}x${i} src/assistant/assistant/images/assistant-128.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/assistant.png
+	convert -scale ${i}x${i} src/linguist/linguist/images/icons/linguist-128-32.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/linguist.png
+done
 
 sed -i -e 's#/usr/lib/qt5/bin#%{_qt5_bindir}#' %{buildroot}/%{_datadir}/applications/*.desktop
 
