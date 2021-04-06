@@ -1,0 +1,39 @@
+From 33693a928986006d79c1ee743733cde5966ac402 Mon Sep 17 00:00:00 2001
+From: Kai Pastor <dg0yt@darc.de>
+Date: Thu, 15 Oct 2020 07:48:49 +0200
+Subject: [PATCH 17/17] Clamp registered collection time-stamp to
+ SOURCE_DATE_EPOCH if set
+
+Task-number: QTBUG-62697
+Change-Id: I73cc41db9c57d050783e963896f9696c294126c3
+Reviewed-by: Jarek Kobus <jaroslaw.kobus@qt.io>
+(cherry picked from commit b463cd691b533ee31d602b2226b90d3c528b6a94)
+Reviewed-by: Qt Cherry-pick Bot <cherrypick_bot@qt-project.org>
+---
+ src/assistant/help/qhelpcollectionhandler.cpp | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/src/assistant/help/qhelpcollectionhandler.cpp b/src/assistant/help/qhelpcollectionhandler.cpp
+index 69782d45..d7b319d1 100644
+--- a/src/assistant/help/qhelpcollectionhandler.cpp
++++ b/src/assistant/help/qhelpcollectionhandler.cpp
+@@ -2197,7 +2197,15 @@ bool QHelpCollectionHandler::registerIndexTable(const QHelpDBReader::IndexTable
+     m_query->addBindValue(fileName);
+     const QFileInfo fi(absoluteDocPath(fileName));
+     m_query->addBindValue(fi.size());
+-    m_query->addBindValue(fi.lastModified().toString(Qt::ISODate));
++    QDateTime lastModified = fi.lastModified();
++    if (qEnvironmentVariableIsSet("SOURCE_DATE_EPOCH")) {
++        const QString sourceDateEpochStr = qEnvironmentVariable("SOURCE_DATE_EPOCH");
++        bool ok;
++        const qlonglong sourceDateEpoch = sourceDateEpochStr.toLongLong(&ok);
++        if (ok && sourceDateEpoch < lastModified.toSecsSinceEpoch())
++            lastModified.setSecsSinceEpoch(sourceDateEpoch);
++    }
++    m_query->addBindValue(lastModified.toString(Qt::ISODate));
+     if (!m_query->exec())
+         return false;
+ 
+-- 
+2.31.1
+

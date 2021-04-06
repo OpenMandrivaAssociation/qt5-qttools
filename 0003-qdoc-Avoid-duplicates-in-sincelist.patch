@@ -1,0 +1,33 @@
+From 4a4995a7952fa5d274488ce019d24a2af1f884fb Mon Sep 17 00:00:00 2001
+From: Topi Reinio <topi.reinio@qt.io>
+Date: Tue, 27 Oct 2020 09:19:08 +0100
+Subject: [PATCH 03/17] qdoc: Avoid duplicates in \sincelist
+
+Related non-members appear twice in the node tree; when processing
+children of an aggregate, skip nodes that do not report the aggregate
+as their parent.
+
+Task-number: QTBUG-87866
+Change-Id: Id06dcfe9ab4ce4d0ef18b69506fa82c2df9e85b0
+(cherry picked from commit ff92f335d5223af55542753f6ce5da382a1d2cd9)
+Reviewed-by: Paul Wicking <paul.wicking@qt.io>
+---
+ src/qdoc/node.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/qdoc/node.cpp b/src/qdoc/node.cpp
+index 82306eee..29985a8b 100644
+--- a/src/qdoc/node.cpp
++++ b/src/qdoc/node.cpp
+@@ -2749,6 +2749,8 @@ void Aggregate::findAllAttributions(NodeMultiMap &attributions)
+ void Aggregate::findAllSince()
+ {
+     for (auto *node : qAsConst(children_)) {
++        if (node->isRelatedNonmember() && node->parent() != this)
++            continue;
+         QString sinceString = node->since();
+         // Insert a new entry into each map for each new since string found.
+         if (!node->isPrivate() && !sinceString.isEmpty()) {
+-- 
+2.31.1
+

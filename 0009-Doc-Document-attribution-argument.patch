@@ -1,0 +1,58 @@
+From 6f90d0a98c7af008bc5675bd6e79967fde124d21 Mon Sep 17 00:00:00 2001
+From: Kai Koehne <kai.koehne@qt.io>
+Date: Mon, 16 Nov 2020 07:58:50 +0100
+Subject: [PATCH 09/17] Doc: Document attribution argument
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Attribution pages got introduced in commit d3f3e98ee.
+
+Also order the arguments alphabetically.
+
+Change-Id: I14d54067b803bf6a788676a45fec7969486187be
+Reviewed-by: Topi Reiniö <topi.reinio@qt.io>
+(cherry picked from commit 3d97baa9535a7dc4dedd883d1c1fa2a2a0e6d1c6)
+Reviewed-by: Qt Cherry-pick Bot <cherrypick_bot@qt-project.org>
+---
+ src/qdoc/doc/qdoc-manual-topiccmds.qdoc | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/src/qdoc/doc/qdoc-manual-topiccmds.qdoc b/src/qdoc/doc/qdoc-manual-topiccmds.qdoc
+index 0837648b..7d906ce6 100644
+--- a/src/qdoc/doc/qdoc-manual-topiccmds.qdoc
++++ b/src/qdoc/doc/qdoc-manual-topiccmds.qdoc
+@@ -930,22 +930,24 @@
+ 
+     \list
+ 
++    \li api - This is the type of page used for C++ class references and
++    QML type references. You should never use this one for the pages
++    you write, because this one is reserved for QDoc.
++
++    \li attribution - A page describing (code) attributions.
++
++    \li example - A page that describes a working example.
++
+     \li faq - A frequently asked question.
+ 
+     \li howto - A user guide on how to use some components of the
+     software.
+ 
+-    \li example - A page that describes a working example.
+-
+     \li overview - For text pages that provide an overview of some
+     important subject.
+ 
+     \li tutorial - For text pages that are part of a tutorial.
+ 
+-    \li api - This is the type of page used for C++ class references and
+-    QML type references. You should never use this one for the pages
+-    you write, because this one is reserved for QDoc.
+-
+     \endlist
+ 
+     The page title is set using the \l {title-command} {\\title}
+-- 
+2.31.1
+

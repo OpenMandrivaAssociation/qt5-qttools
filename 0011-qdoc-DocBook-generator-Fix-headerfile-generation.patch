@@ -1,0 +1,145 @@
+From e8bfcf7696af6bc4811ce2d66c4f199579f3456c Mon Sep 17 00:00:00 2001
+From: Topi Reinio <topi.reinio@qt.io>
+Date: Thu, 4 Jun 2020 20:48:09 +0200
+Subject: [PATCH 11/17] qdoc: DocBook generator: Fix \headerfile generation
+
+Header files were missing content when using the DocBook output format.
+
+Fixes: QTBUG-84224
+Change-Id: I625ff2a4b14d69f6df0f706cfd4fdbef2cd7fd7f
+Reviewed-by: Paul Wicking <paul.wicking@qt.io>
+(cherry picked from commit 3297d012680e083b25a4740229f9fe77c4fdbc17)
+Reviewed-by: Qt Cherry-pick Bot <cherrypick_bot@qt-project.org>
+---
+ src/qdoc/docbookgenerator.cpp                 | 10 +--
+ .../headerfile-docbook/testheader.xml         | 70 ++++++++++++++++++-
+ 2 files changed, 75 insertions(+), 5 deletions(-)
+
+diff --git a/src/qdoc/docbookgenerator.cpp b/src/qdoc/docbookgenerator.cpp
+index 3e4f03cf..82893be9 100644
+--- a/src/qdoc/docbookgenerator.cpp
++++ b/src/qdoc/docbookgenerator.cpp
+@@ -2436,12 +2436,10 @@ void DocBookGenerator::generateCppReferencePage(Node *node)
+     QString title;
+     QString rawTitle;
+     QString fullTitle;
+-    const NamespaceNode *ns = nullptr;
+     if (aggregate->isNamespace()) {
+         rawTitle = aggregate->plainName();
+         fullTitle = aggregate->plainFullName();
+         title = rawTitle + " Namespace";
+-        ns = static_cast<const NamespaceNode *>(aggregate);
+     } else if (aggregate->isClass()) {
+         rawTitle = aggregate->plainName();
+         QString templateDecl = node->templateDecl();
+@@ -2449,6 +2447,8 @@ void DocBookGenerator::generateCppReferencePage(Node *node)
+             fullTitle = QString("%1 %2 ").arg(templateDecl, aggregate->typeWord(false));
+         fullTitle += aggregate->plainFullName();
+         title = rawTitle + QLatin1Char(' ') + aggregate->typeWord(true);
++    } else if (aggregate->isHeader()) {
++        title = fullTitle = rawTitle = aggregate->fullTitle();
+     }
+ 
+     QString subtitleText;
+@@ -2479,8 +2479,10 @@ void DocBookGenerator::generateCppReferencePage(Node *node)
+     }
+ 
+     Sections sections(const_cast<Aggregate *>(aggregate));
+-    SectionVector *sectionVector =
+-            ns ? &sections.stdDetailsSections() : &sections.stdCppClassDetailsSections();
++    auto *sectionVector =
++            (aggregate->isNamespace() || aggregate->isHeader()) ?
++                    &sections.stdDetailsSections() :
++                    &sections.stdCppClassDetailsSections();
+     SectionVector::ConstIterator section = sectionVector->constBegin();
+     while (section != sectionVector->constEnd()) {
+         bool headerGenerated = false;
+diff --git a/tests/auto/qdoc/generatedoutput/expected_output/headerfile-docbook/testheader.xml b/tests/auto/qdoc/generatedoutput/expected_output/headerfile-docbook/testheader.xml
+index f3461fb1..afa0b20a 100644
+--- a/tests/auto/qdoc/generatedoutput/expected_output/headerfile-docbook/testheader.xml
++++ b/tests/auto/qdoc/generatedoutput/expected_output/headerfile-docbook/testheader.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <db:article xmlns:db="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.2" xml:lang="en">
+ <db:info>
+-<db:title></db:title>
++<db:title>&lt;TestHeader&gt; - Test Header</db:title>
+ <db:productname>HeaderFile</db:productname>
+ <db:titleabbrev>HeaderFile Reference Documentation</db:titleabbrev>
+ <db:abstract>
+@@ -19,4 +19,72 @@
+ <db:section xml:id="details">
+ <db:title>Detailed Description</db:title>
+ </db:section>
++<db:section xml:id="type-documentation">
++<db:title>Type Documentation</db:title>
++<db:section xml:id="Globals-enum">
++<db:title>enum Globals</db:title>
++<db:enumsynopsis>
++<db:enumname>Globals</db:enumname>
++<db:synopsisinfo db:role="access">public</db:synopsisinfo>
++<db:synopsisinfo db:role="status">active</db:synopsisinfo>
++<db:synopsisinfo db:role="threadsafeness">unspecified</db:synopsisinfo>
++<db:synopsisinfo db:role="module">HeaderFile</db:synopsisinfo>
++<db:enumitem db:enumidentifier="Glo" db:enumvalue="0"/>
++<db:enumitem db:enumidentifier="Bal" db:enumvalue="1"/>
++</db:enumsynopsis>
++<db:informaltable>
++<db:thead>
++<db:tr>
++<db:th>Constant</db:th>
++<db:th>Description</db:th>
++</db:tr>
++</db:thead>
++<db:tr>
++<db:td>
++<db:para><db:code>Glo</db:code></db:para>
++</db:td>
++<db:td><db:code>0</db:code></db:td>
++</db:tr>
++<db:tr>
++<db:td>
++<db:para><db:code>Bal</db:code></db:para>
++</db:td>
++<db:td><db:code>1</db:code></db:td>
++</db:tr>
++</db:informaltable>
++</db:section>
++</db:section>
++<db:section xml:id="variable-documentation">
++<db:title>Variable Documentation</db:title>
++<db:section xml:id="globalVar-var">
++<db:title>const int globalVar</db:title>
++<db:fieldsynopsis>
++<db:type>const int</db:type>
++<db:varname>globalVar</db:varname>
++<db:synopsisinfo db:role="access">public</db:synopsisinfo>
++<db:synopsisinfo db:role="status">active</db:synopsisinfo>
++<db:synopsisinfo db:role="threadsafeness">unspecified</db:synopsisinfo>
++<db:synopsisinfo db:role="module">HeaderFile</db:synopsisinfo>
++</db:fieldsynopsis>
++<db:para>Global variable.</db:para>
++</db:section>
++</db:section>
++<db:section xml:id="function-documentation">
++<db:title>Function Documentation</db:title>
++<db:section xml:id="globalFunc">
++<db:title>void globalFunc()</db:title>
++<db:methodsynopsis>
++<db:void/>
++<db:methodname>globalFunc</db:methodname>
++<db:void/>
++<db:synopsisinfo db:role="meta">plain</db:synopsisinfo>
++<db:synopsisinfo db:role="signature">void globalFunc()</db:synopsisinfo>
++<db:synopsisinfo db:role="access">public</db:synopsisinfo>
++<db:synopsisinfo db:role="status">active</db:synopsisinfo>
++<db:synopsisinfo db:role="threadsafeness">unspecified</db:synopsisinfo>
++<db:synopsisinfo db:role="module">HeaderFile</db:synopsisinfo>
++</db:methodsynopsis>
++<db:para>Global function.</db:para>
++</db:section>
++</db:section>
+ </db:article>
+-- 
+2.31.1
+

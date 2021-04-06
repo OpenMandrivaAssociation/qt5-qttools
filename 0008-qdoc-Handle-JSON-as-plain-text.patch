@@ -1,0 +1,47 @@
+From 02eed75d1661371fb76b496dfd08cbd198737b35 Mon Sep 17 00:00:00 2001
+From: Topi Reinio <topi.reinio@qt.io>
+Date: Thu, 12 Nov 2020 09:52:53 +0100
+Subject: [PATCH 08/17] qdoc: Handle JSON as plain text
+
+The JavaScript code marker failed to handle JSON snippets; drop
+the advertised support for it, parsing JSON as plain text.
+This is OK as there's typically no types to link to or
+highlighting needed for JSON data.
+
+Fixes: QTBUG-81596
+Change-Id: I004fcbe97a66ff5a33c4c443a24d16107aacb4c8
+Reviewed-by: Paul Wicking <paul.wicking@qt.io>
+(cherry picked from commit d54cfd5ade5c18ed66a1defa337ca3f6aea2ab1a)
+Reviewed-by: Qt Cherry-pick Bot <cherrypick_bot@qt-project.org>
+---
+ src/qdoc/jscodemarker.cpp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/qdoc/jscodemarker.cpp b/src/qdoc/jscodemarker.cpp
+index b3c675d5..0e1eb226 100644
+--- a/src/qdoc/jscodemarker.cpp
++++ b/src/qdoc/jscodemarker.cpp
+@@ -78,16 +78,16 @@ bool JsCodeMarker::recognizeCode(const QString &code)
+  */
+ bool JsCodeMarker::recognizeExtension(const QString &ext)
+ {
+-    return ext == "js" || ext == "json";
++    return ext == "js";
+ }
+ 
+ /*!
+-  Returns \c true if the \a language is recognized. We recognize JavaScript,
+-  ECMAScript and JSON.
++  Returns \c true if the \a language is recognized. We recognize JavaScript and
++  ECMAScript.
+  */
+ bool JsCodeMarker::recognizeLanguage(const QString &language)
+ {
+-    return language == "JavaScript" || language == "ECMAScript" || language == "JSON";
++    return language == "JavaScript" || language == "ECMAScript";
+ }
+ 
+ /*!
+-- 
+2.31.1
+

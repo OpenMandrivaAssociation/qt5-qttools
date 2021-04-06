@@ -1,0 +1,138 @@
+From b9142ba7617b183b90741e00cde7a50877449d08 Mon Sep 17 00:00:00 2001
+From: Topi Reinio <topi.reinio@qt.io>
+Date: Tue, 18 Aug 2020 17:41:26 +0200
+Subject: [PATCH 12/17] qdoc: Skip ignored entries in .qhp
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Classes marked with \dontdocument do not generate a class reference
+page. Skip them when generating the Qt Help project file.
+
+Fixes: QTBUG-86101
+Change-Id: Ica80b505f1f23de0dd0ae59272903e1d19eadf93
+Reviewed-by: Topi Reiniö <topi.reinio@qt.io>
+(cherry picked from commit 7615656ced26a132c6894c080563e74d503be3c7)
+---
+ src/qdoc/helpprojectwriter.cpp                |  2 +-
+ .../dontdocument/dontdocument.qhp             | 55 +++++++++++++++++++
+ .../dontdocument/dontdocument.qdocconf        | 14 +++++
+ .../generatedoutput/tst_generatedoutput.cpp   |  3 +-
+ 4 files changed, 72 insertions(+), 2 deletions(-)
+ create mode 100644 tests/auto/qdoc/generatedoutput/expected_output/dontdocument/dontdocument.qhp
+
+diff --git a/src/qdoc/helpprojectwriter.cpp b/src/qdoc/helpprojectwriter.cpp
+index d411802d..c534d399 100644
+--- a/src/qdoc/helpprojectwriter.cpp
++++ b/src/qdoc/helpprojectwriter.cpp
+@@ -234,7 +234,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project, QXmlStreamWriter &
+     if (!node->url().isEmpty() && !(project.includeIndexNodes && !node->url().startsWith("http")))
+         return false;
+ 
+-    if (node->isPrivate() || node->isInternal())
++    if (node->isPrivate() || node->isInternal() || node->isDontDocument())
+         return false;
+ 
+     if (node->name().isEmpty())
+diff --git a/tests/auto/qdoc/generatedoutput/expected_output/dontdocument/dontdocument.qhp b/tests/auto/qdoc/generatedoutput/expected_output/dontdocument/dontdocument.qhp
+new file mode 100644
+index 00000000..098200a9
+--- /dev/null
++++ b/tests/auto/qdoc/generatedoutput/expected_output/dontdocument/dontdocument.qhp
+@@ -0,0 +1,55 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<QtHelpProject version="1.0">
++    <namespace>org.qt-project.dontdocument.001</namespace>
++    <virtualFolder>test</virtualFolder>
++    <metaData name="version" value=""/>
++    <filterSection>
++        <toc>
++            <section ref="testcpp-module.html" title="QDoc Test C++ Classes">
++                <section ref="testcpp-module.html" title="Classes">
++                    <section ref="seenclass.html" title="SeenClass Class Reference"/>
++                    <section ref="testqdoc-test.html" title="TestQDoc::Test Class Reference">
++                        <section ref="testqdoc-test-members.html" title="List of all members"/>
++                        <section ref="testqdoc-test-obsolete.html" title="Obsolete members"/>
++                    </section>
++                    <section ref="testqdoc-testderived.html" title="TestQDoc::TestDerived Class Reference">
++                        <section ref="testqdoc-testderived-members.html" title="List of all members"/>
++                    </section>
++                </section>
++            </section>
++        </toc>
++        <keywords>
++            <keyword name="Classes" id="Classes" ref="classes.html"/>
++            <keyword name="QDOCTEST_MACRO" id="QDOCTEST_MACRO" ref="testqdoc.html#QDOCTEST_MACRO"/>
++            <keyword name="QDOCTEST_MACRO2" id="QDOCTEST_MACRO2" ref="testqdoc-test.html#QDOCTEST_MACRO2"/>
++            <keyword name="QDoc Test C++ Classes" id="QDoc Test C++ Classes" ref="testcpp-module.html"/>
++            <keyword name="SeenClass" id="SeenClass" ref="seenclass.html"/>
++            <keyword name="Test" id="TestQDoc::Test" ref="testqdoc-test.html"/>
++            <keyword name="Test::SomeType" id="Test::SomeType" ref="testqdoc-test.html#SomeType-typedef"/>
++            <keyword name="TestDerived" id="TestQDoc::TestDerived" ref="testqdoc-testderived.html"/>
++            <keyword name="TestDerived::DerivedType" id="TestDerived::DerivedType" ref="testqdoc-testderived.html#DerivedType-alias"/>
++            <keyword name="TestDerived::NotTypedef" id="TestDerived::NotTypedef" ref="testqdoc-testderived.html#NotTypedef-alias"/>
++            <keyword name="TestQDoc" id="TestQDoc" ref="testqdoc.html"/>
++            <keyword name="anotherObsoleteMember" id="Test::anotherObsoleteMember" ref="testqdoc-test-obsolete.html#anotherObsoleteMember"/>
++            <keyword name="deprecatedMember" id="Test::deprecatedMember" ref="testqdoc-test-obsolete.html#deprecatedMember"/>
++            <keyword name="inlineFunction" id="Test::inlineFunction" ref="testqdoc-test.html#inlineFunction"/>
++            <keyword name="obsoleteMember" id="Test::obsoleteMember" ref="testqdoc-test-obsolete.html#obsoleteMember"/>
++            <keyword name="overload" id="Test::overload" ref="testqdoc-test.html#overload"/>
++            <keyword name="someFunction" id="Test::someFunction" ref="testqdoc-test.html#someFunction"/>
++            <keyword name="someFunctionDefaultArg" id="Test::someFunctionDefaultArg" ref="testqdoc-test.html#someFunctionDefaultArg"/>
++            <keyword name="virtualFun" id="Test::virtualFun" ref="testqdoc-test.html#virtualFun"/>
++            <keyword name="virtualFun" id="TestDerived::virtualFun" ref="testqdoc-testderived.html#virtualFun"/>
++        </keywords>
++        <files>
++            <file>classes.html</file>
++            <file>seenclass.html</file>
++            <file>testcpp-module.html</file>
++            <file>testqdoc-test-members.html</file>
++            <file>testqdoc-test-obsolete.html</file>
++            <file>testqdoc-test.html</file>
++            <file>testqdoc-testderived-members.html</file>
++            <file>testqdoc-testderived.html</file>
++            <file>testqdoc.html</file>
++        </files>
++    </filterSection>
++</QtHelpProject>
+diff --git a/tests/auto/qdoc/generatedoutput/testdata/dontdocument/dontdocument.qdocconf b/tests/auto/qdoc/generatedoutput/testdata/dontdocument/dontdocument.qdocconf
+index 117920e5..ef45f50a 100644
+--- a/tests/auto/qdoc/generatedoutput/testdata/dontdocument/dontdocument.qdocconf
++++ b/tests/auto/qdoc/generatedoutput/testdata/dontdocument/dontdocument.qdocconf
+@@ -3,5 +3,19 @@ include(../configs/testcpp.qdocconf)
+ headers += dont.h
+ sources += dont.cpp test.qdoc
+ 
++qhp.projects                    = DontDocument
++
++qhp.DontDocument.file           = dontdocument.qhp
++qhp.DontDocument.namespace      = org.qt-project.dontdocument.001
++qhp.DontDocument.virtualFolder  = test
++qhp.DontDocument.indexTitle     = QDoc Test C++ Classes
++qhp.DontDocument.indexRoot      =
++
++qhp.DontDocument.subprojects                        = classes
++qhp.DontDocument.subprojects.classes.title          = Classes
++qhp.DontDocument.subprojects.classes.indexTitle     = QDoc Test C++ Classes
++qhp.DontDocument.subprojects.classes.selectors      = class
++qhp.DontDocument.subprojects.classes.sortPages      = true
++
+ HTML.nosubdirs = true
+ HTML.outputsubdir = dontdocument
+diff --git a/tests/auto/qdoc/generatedoutput/tst_generatedoutput.cpp b/tests/auto/qdoc/generatedoutput/tst_generatedoutput.cpp
+index fd68159a..a83ba337 100644
+--- a/tests/auto/qdoc/generatedoutput/tst_generatedoutput.cpp
++++ b/tests/auto/qdoc/generatedoutput/tst_generatedoutput.cpp
+@@ -349,7 +349,8 @@ void tst_generatedOutput::dontDocument()
+ {
+     testAndCompare("testdata/dontdocument/dontdocument.qdocconf",
+                    "dontdocument/classes.html "
+-                   "dontdocument/seenclass.html");
++                   "dontdocument/seenclass.html "
++                   "dontdocument/dontdocument.qhp");
+ }
+ 
+ void tst_generatedOutput::inheritedQmlPropertyGroups()
+-- 
+2.31.1
+
