@@ -1,0 +1,16 @@
+diff -up qttools-everywhere-src-5.15.2/src/assistant/assistant/helpviewer_qwv.cpp.omv~ qttools-everywhere-src-5.15.2/src/assistant/assistant/helpviewer_qwv.cpp
+--- qttools-everywhere-src-5.15.2/src/assistant/assistant/helpviewer_qwv.cpp.omv~	2021-08-23 22:18:27.785243614 +0200
++++ qttools-everywhere-src-5.15.2/src/assistant/assistant/helpviewer_qwv.cpp	2021-08-23 22:18:38.555259060 +0200
+@@ -218,10 +218,12 @@ void HelpViewer::resetScale()
+     setZoomFactor(d->webDpiRatio);
+ }
+ 
++#if 0
+ void HelpViewer::resizeEvent(QResizeEvent *e)
+ {
+     QWebView::resizeEvent(e);
+ }
++#endif
+ 
+ qreal HelpViewer::scale() const
+ {

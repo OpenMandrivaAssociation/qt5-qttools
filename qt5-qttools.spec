@@ -39,6 +39,7 @@ Patch1:		lrelease-zlib.patch
 Patch2:		fix_qtdesigner_include_paths.patch
 Patch3:		qttools-5.12.1-clang-7.0.patch
 Patch4:		qttools-compilefix-if-qtwebkit-is-enabled.patch
+Patch5:		qdoc-compile.patch
 # From KDE
 Patch1000:	0001-Bump-version.patch
 Patch1001:	0002-qtpaths-Add-missing-location-types.patch
@@ -65,6 +66,8 @@ BuildRequires:	pkgconfig(Qt5Xml)
 BuildRequires:	pkgconfig(Qt5Network)
 BuildRequires:	pkgconfig(Qt5PrintSupport)
 BuildRequires:	pkgconfig(Qt5Qml)
+BuildRequires:	pkgconfig(Qt5WebView)
+BuildRequires:	pkgconfig(Qt5WebEngineWidgets)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	qt5-qtqml-private-devel
 BuildRequires:	qt5-qtquick-private-devel
