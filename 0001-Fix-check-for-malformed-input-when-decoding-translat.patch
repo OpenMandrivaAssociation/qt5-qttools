@@ -1,0 +1,37 @@
+From a3e5b2eb8ef5982bc1fffb390ebcd141be1deee4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Kai=20K=C3=B6hne?= <kai.koehne@qt.io>
+Date: Wed, 17 Feb 2021 16:12:48 +0100
+Subject: [PATCH] Fix check for malformed input when decoding translations
+
+Use patch 458d49861f5 in qtbase also for the matching functionality in
+qttools. Any integer modulo 1 can never be anything else but 0, so the
+statement could never be true.
+
+Found by static analyzer: https://www.viva64.com/en/amp/b/0801/
+
+Pick-to: 5.15
+Pick-to: 6.1
+Change-Id: I92d13877e5e44bb7555be7fb89c1ee546b25fbba
+Reviewed-by: Volker Hilsheimer <volker.hilsheimer@qt.io>
+Reviewed-by: Edward Welbourne <edward.welbourne@qt.io>
+(cherry picked from commit b96fe95da00aca6be4a30f7d6216f41e6538ec28)
+---
+ src/linguist/shared/qm.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/linguist/shared/qm.cpp b/src/linguist/shared/qm.cpp
+index 288607824..8c3fc3faf 100644
+--- a/src/linguist/shared/qm.cpp
++++ b/src/linguist/shared/qm.cpp
+@@ -552,7 +552,7 @@ bool loadQM(Translator &translator, QIODevice &dev, ConversionData &cd)
+                 goto end;
+             case Tag_Translation: {
+                 int len = read32(m);
+-                if (len % 1) {
++                if (len & 1) {
+                     cd.appendError(QLatin1String("QM-Format error"));
+                     return false;
+                 }
+-- 
+2.35.1
+

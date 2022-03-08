@@ -23,9 +23,9 @@ Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
-%define qttarballdir qttools-everywhere-src-5.15.2
-Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/5.15.2/submodules/%{qttarballdir}.tar.xz
+Release:	2
+%define qttarballdir qttools-everywhere-opensource-src-%{version}
+Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
@@ -41,21 +41,7 @@ Patch3:		qttools-5.12.1-clang-7.0.patch
 Patch4:		qttools-compilefix-if-qtwebkit-is-enabled.patch
 Patch5:		qdoc-compile.patch
 # From KDE
-Patch1000:	0001-Bump-version.patch
-Patch1001:	0002-qtpaths-Add-missing-location-types.patch
-Patch1002:	0003-qdoc-Avoid-duplicates-in-sincelist.patch
-Patch1004:	0005-qt5_create_translation-Fix-handling-of-directory-dep.patch
-Patch1006:	0007-CMake-Fix-usage-of-qt_create_translation-in-a-CTest.patch
-Patch1007:	0008-qdoc-Handle-JSON-as-plain-text.patch
-Patch1008:	0009-Doc-Document-attribution-argument.patch
-Patch1009:	0010-Replace-prefined-application-name-by-a-generic-name.patch
-Patch1010:	0011-qdoc-DocBook-generator-Fix-headerfile-generation.patch
-Patch1011:	0012-qdoc-Skip-ignored-entries-in-.qhp.patch
-Patch1012:	0013-qdoc-Avoid-excess-warnings-for-undocumented-namespac.patch
-Patch1013:	0014-Fix-qdbusviewer.exe-missing-version-and-copyright-in.patch
-Patch1014:	0015-Add-changes-file-for-Qt-5.12.10.patch
-Patch1015:	0016-CMake-Fix-handling-of-extensions-argument.patch
-Patch1016:	0017-Clamp-registered-collection-time-stamp-to-SOURCE_DAT.patch
+Patch1000:	0001-Fix-check-for-malformed-input-when-decoding-translat.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
@@ -341,7 +327,7 @@ Devel files needed to build apps based on QtDesigner.
 #------------------------------------------------------------------------------
 
 %prep
-%autosetup -n %qttarballdir -p1
+%autosetup -n %(echo %qttarballdir |sed -e 's,-opensource,,') -p1
 %{_qt5_prefix}/bin/syncqt.pl -version %{version}
 
 # thermonuclear hack
