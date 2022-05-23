@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.3
+Version:	5.15.4
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qttools-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -41,7 +41,7 @@ Patch3:		qttools-5.12.1-clang-7.0.patch
 Patch4:		qttools-compilefix-if-qtwebkit-is-enabled.patch
 Patch5:		qdoc-compile.patch
 # From KDE
-Patch1000:	0001-Fix-check-for-malformed-input-when-decoding-translat.patch
+# [Currently no patches required]
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
