@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.4
+Version:	5.15.5
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
@@ -41,7 +41,7 @@ Patch3:		qttools-5.12.1-clang-7.0.patch
 Patch4:		qttools-compilefix-if-qtwebkit-is-enabled.patch
 Patch5:		qdoc-compile.patch
 # From KDE
-# [Currently no patches required]
+Patch1000:	0001-Ensure-FileAttributeSetTable-is-filled-ordered-so-we.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
