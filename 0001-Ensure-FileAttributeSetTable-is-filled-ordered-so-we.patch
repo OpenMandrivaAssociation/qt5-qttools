@@ -1,4 +1,4 @@
-From c4750dd02070ce246ff98cc5d137193825043912 Mon Sep 17 00:00:00 2001
+From 090e526e713d01eac34c64e4a09ad961c612febf Mon Sep 17 00:00:00 2001
 From: Albert Astals Cid <aacid@kde.org>
 Date: Thu, 16 Jun 2022 09:52:54 +0200
 Subject: [PATCH] Ensure FileAttributeSetTable is filled ordered so we get the
