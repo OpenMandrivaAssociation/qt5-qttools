@@ -1,4 +1,4 @@
-From 090e526e713d01eac34c64e4a09ad961c612febf Mon Sep 17 00:00:00 2001
+From 5649efd376ed7dbb171905e9edebbd547d1f73eb Mon Sep 17 00:00:00 2001
 From: Albert Astals Cid <aacid@kde.org>
 Date: Thu, 16 Jun 2022 09:52:54 +0200
 Subject: [PATCH] Ensure FileAttributeSetTable is filled ordered so we get the
@@ -30,5 +30,5 @@ index feab1e2d5..cbfb82507 100644
              "VALUES(?, ?)"));
          m_query->bindValue(0, filterSetId);
 -- 
-2.38.1
+2.40.0.rc2
 
