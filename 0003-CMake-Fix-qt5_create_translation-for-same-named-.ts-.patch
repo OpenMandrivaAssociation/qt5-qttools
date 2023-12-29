@@ -1,7 +1,7 @@
-From 38ae810be3fb4984f75b55a16d3413e35d701af1 Mon Sep 17 00:00:00 2001
+From fd71b7d464fabbc0b98925729fa3ef12e6bf2dcd Mon Sep 17 00:00:00 2001
 From: Joerg Bornemann <joerg.bornemann@qt.io>
 Date: Tue, 25 Apr 2023 10:14:54 +0200
-Subject: [PATCH 3/3] CMake: Fix qt5_create_translation for same-named .ts
+Subject: [PATCH 3/4] CMake: Fix qt5_create_translation for same-named .ts
  files
 
 Consider a project where .ts files are structured by directory instead
@@ -110,5 +110,5 @@ index 6a45e57be..0ccf59f3c 100644
          else()
              set(qm_dep "${_abs_FILE}")
 -- 
-2.42.0
+2.43.0
 

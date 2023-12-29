@@ -1,7 +1,7 @@
-From daa7b2110d91c9ee44c442b5c3ab4b3625380e52 Mon Sep 17 00:00:00 2001
+From 29ea65cf9a31d617556883f71e274ece4a704a46 Mon Sep 17 00:00:00 2001
 From: Andreas Sturmlechner <asturm@gentoo.org>
 Date: Fri, 18 Mar 2022 12:43:18 +0100
-Subject: [PATCH 2/3] Drop superfluous network dependency from
+Subject: [PATCH 2/4] Drop superfluous network dependency from
  assistant/{help,qhelpgenerator}.pro
 
 Upstream's cmake equivalent commit is a9804f1a6496eccb79fb006fe4c9247eee1c4cec
@@ -38,5 +38,5 @@ index bb22000c8..415347a00 100644
  QTPLUGIN.platforms = qminimal
  QTPLUGIN.sqldrivers = qsqlite
 -- 
-2.42.0
+2.43.0
 
