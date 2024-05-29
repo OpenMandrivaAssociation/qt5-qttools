@@ -1,4 +1,4 @@
-From bd0ceb7de5d0c918ae596150e95b069dca8b9150 Mon Sep 17 00:00:00 2001
+From f82ed367d1b80b69d738cfcde534b75854a45476 Mon Sep 17 00:00:00 2001
 From: Topi Reinio <topi.reinio@qt.io>
 Date: Mon, 16 Jan 2023 09:31:24 +0000
 Subject: [PATCH 4/4] qdoc: Ensure the generated temporary header file is
@@ -44,5 +44,5 @@ index 539a603da..a41b99cec 100644
                  qCWarning(lcQdoc) << "clang not printing errors; include paths were guessed";
              CXErrorCode err =
 -- 
-2.43.0
+2.45.1
 

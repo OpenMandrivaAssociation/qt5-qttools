@@ -1,4 +1,4 @@
-From fd71b7d464fabbc0b98925729fa3ef12e6bf2dcd Mon Sep 17 00:00:00 2001
+From ca93cda4b820a3f7d539b0207c0ddce2171b3082 Mon Sep 17 00:00:00 2001
 From: Joerg Bornemann <joerg.bornemann@qt.io>
 Date: Tue, 25 Apr 2023 10:14:54 +0200
 Subject: [PATCH 3/4] CMake: Fix qt5_create_translation for same-named .ts
@@ -110,5 +110,5 @@ index 6a45e57be..0ccf59f3c 100644
          else()
              set(qm_dep "${_abs_FILE}")
 -- 
-2.43.0
+2.45.1
 

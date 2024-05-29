@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.12
+Version:	5.15.14
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	3
+Release:	1
 %define qttarballdir qttools-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
