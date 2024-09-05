@@ -1,7 +1,7 @@
-From f82ed367d1b80b69d738cfcde534b75854a45476 Mon Sep 17 00:00:00 2001
+From 0378d3e541f40bc9c5433eac70d3949ddff9cfc4 Mon Sep 17 00:00:00 2001
 From: Topi Reinio <topi.reinio@qt.io>
 Date: Mon, 16 Jan 2023 09:31:24 +0000
-Subject: [PATCH 4/4] qdoc: Ensure the generated temporary header file is
+Subject: [PATCH 3/3] qdoc: Ensure the generated temporary header file is
  closed properly
 
 Use the correct scope for the QFile object used for writing the
@@ -44,5 +44,5 @@ index 539a603da..a41b99cec 100644
                  qCWarning(lcQdoc) << "clang not printing errors; include paths were guessed";
              CXErrorCode err =
 -- 
-2.45.1
+2.46.0
 

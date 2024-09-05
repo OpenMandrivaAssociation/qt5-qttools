@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.14
+Version:	5.15.15
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qttools-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -43,7 +43,7 @@ Patch5:		qdoc-compile.patch
 # From KDE
 Patch1001:	0001-Ensure-FileAttributeSetTable-is-filled-ordered-so-we.patch
 Patch1002:	0002-Drop-superfluous-network-dependency-from-assistant-h.patch
-Patch1003:	0003-CMake-Fix-qt5_create_translation-for-same-named-.ts-.patch
+Patch1003:	0003-qdoc-Ensure-the-generated-temporary-header-file-is-c.patch
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
