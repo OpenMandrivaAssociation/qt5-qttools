@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qttools
-Version:	5.15.15
+Version:	5.15.18
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qttools-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -77,13 +77,6 @@ Qt tools.
 %{_qt5_bindir}/qtplugininfo
 %{_qt5_bindir}/qtattributionsscanner
 %{_qt5_bindir}/qcollectiongenerator
-%{_bindir}/pixeltool
-%{_bindir}/qdistancefieldgenerator
-%{_bindir}/qtpaths
-%{_bindir}/qtdiag
-%{_bindir}/qtplugininfo
-%{_bindir}/qtattributionsscanner
-%{_bindir}/qcollectiongenerator
 
 #----------------------------------------------------------------------------
 
@@ -96,7 +89,6 @@ Qt documentation generator, version 5.
 
 %files -n qdoc%{api}
 %{_qt5_bindir}/qdoc
-%{_bindir}/qdoc
 %{_libdir}/cmake/Qt5AttributionsScannerTools
 %{_libdir}/cmake/Qt5DocTools
 
@@ -113,8 +105,6 @@ Qt Assistant provides a documentation Browser.
 %files -n qt%{api}-assistant
 %{_qt5_bindir}/assistant*
 %{_qt5_bindir}/qhelpgen*
-%{_bindir}/assistant*
-%{_bindir}/qhelpgen*
 %{_datadir}/applications/*assistant*.desktop
 %{_datadir}/icons/hicolor/*/apps/assistant.*
 #FIXME: in the good package ?
@@ -132,7 +122,6 @@ implementing user interfaces a lot easier.
 
 %files	-n	qt%{api}-designer
 %{_qt5_bindir}/design*
-%{_bindir}/design*
 %{_qt5_plugindir}/designer
 %{_datadir}/applications/*designer*.desktop
 %{_datadir}/icons/hicolor/*/apps/QtProject-designer.*
@@ -171,13 +160,6 @@ Translation tool for Qt based applications
 %{_qt5_bindir}/lupdate
 %{_qt5_bindir}/lupdate-pro
 %{_qt5_bindir}/linguist*
-%{_bindir}/lconvert
-%{_bindir}/lprodump
-%{_bindir}/lrelease
-%{_bindir}/lrelease-pro
-%{_bindir}/lupdate
-%{_bindir}/lupdate-pro
-%{_bindir}/linguist*
 #FIXME: Find a better place
 %{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake
 %{_qt5_libdir}/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake
@@ -197,8 +179,6 @@ Inter-Process Communication using the D-Bus protocol.
 %files qtdbus
 %{_qt5_bindir}/qdbus
 %{_qt5_bindir}/qdbusviewer
-%{_bindir}/qdbus
-%{_bindir}/qdbusviewer
 
 #------------------------------------------------------------------------------
 
@@ -393,10 +373,3 @@ sed -i -e 's,Qt5UiPlugin,Qt5UiTools,g' %{buildroot}%{_libdir}/pkgconfig/Qt5Desig
 # to $QTDIR/lib instead of plain old libdir
 # There's no point in prl files anyway, so let's dump it...
 rm -f %{buildroot}%{_libdir}/libQt5UiTools.prl
-
-# Make sure scripts can find the tools
-mkdir -p %{buildroot}%{_bindir}
-cd %{buildroot}%{_qt5_bindir}
-for i in *; do
-	ln -s %{_qt5_bindir}/$i %{buildroot}%{_bindir}/
-done
