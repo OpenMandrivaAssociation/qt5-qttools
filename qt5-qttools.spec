@@ -45,6 +45,7 @@ Patch1001:	0001-Ensure-FileAttributeSetTable-is-filled-ordered-so-we.patch
 Patch1002:	0002-Drop-superfluous-network-dependency-from-assistant-h.patch
 Patch1003:	0003-qdoc-Ensure-the-generated-temporary-header-file-is-c.patch
 BuildRequires:	qmake5
+BuildRequires:	make
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5Gui)
