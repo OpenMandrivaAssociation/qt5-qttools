@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qttools-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qttools-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/archive/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -107,7 +107,7 @@ Qt Assistant provides a documentation Browser.
 %{_qt5_bindir}/assistant*
 %{_qt5_bindir}/qhelpgen*
 %{_datadir}/applications/*assistant*.desktop
-%{_datadir}/icons/hicolor/*/apps/assistant.*
+%{_datadir}/icons/hicolor/*/apps/assistant5.*
 #FIXME: in the good package ?
 %{_qt5_exampledir}/assistant
 
@@ -139,7 +139,7 @@ Translation tool for Qt based applications
 %files	-n	qt%{api}-linguist
 %{_qt5_datadir}/phrasebooks
 %{_datadir}/applications/*linguist*.desktop
-%{_datadir}/icons/hicolor/*/apps/linguist.*
+%{_datadir}/icons/hicolor/*/apps/linguist5.*
 #FIXME: in the good package ?
 %{_qt5_exampledir}/linguist
 
@@ -349,8 +349,8 @@ install -m 644 %SOURCE3 %{buildroot}/%{_datadir}/applications
 for i in 32 48 64 128; do
 	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps
 	convert -scale ${i}x${i} src/designer/src/designer/images/designer.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/QtProject-designer.png
-	convert -scale ${i}x${i} src/assistant/assistant/images/assistant-128.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/assistant.png
-	convert -scale ${i}x${i} src/linguist/linguist/images/icons/linguist-128-32.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/linguist.png
+	convert -scale ${i}x${i} src/assistant/assistant/images/assistant-128.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/assistant5.png
+	convert -scale ${i}x${i} src/linguist/linguist/images/icons/linguist-128-32.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/linguist5.png
 done
 
 sed -i -e 's#/usr/lib/qt5/bin#%{_qt5_bindir}#' %{buildroot}/%{_datadir}/applications/*.desktop
